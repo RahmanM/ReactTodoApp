@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.top-10{
+  margin-top: 10px;
+}
+
+.pad-right-50{
+  padding-right: 50px;
+}
+
+.pad-top-20{
+ padding-top: 20px;
+}
+
+.card-body{
+  padding-left: 20px;
+}
+
+.left-a{
+  text-align: left;
+}
