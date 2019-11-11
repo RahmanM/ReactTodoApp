@@ -52,6 +52,6 @@
   },
   "homepage": "https://github.com/RahmanM/ReactTodoApp#readme",
   "engines": {
-    "node": "10.0"
+    "node": "8.16.2"
   }
 }
