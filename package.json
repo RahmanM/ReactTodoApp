@@ -38,5 +38,20 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2"
+  },
+  "description": "`npm install --save-dev @fortawesome/fontawesome-free`",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RahmanM/ReactTodoApp.git"
+  },
+  "author": "Rahman Mahmoodi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RahmanM/ReactTodoApp/issues"
+  },
+  "homepage": "https://github.com/RahmanM/ReactTodoApp#readme",
+  "engines": {
+    "node": "10.0"
   }
 }
