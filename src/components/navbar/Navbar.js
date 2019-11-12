@@ -24,19 +24,21 @@ class Navbar extends Component {
 
     return (
       <div className="navbar navbar-light bg-light">
-        <div>
-          <strong>
-          Hello, {user.displayName}
-          </strong>
-        </div>
-        
-        <div class="pull-left">
-          <a onClick={() => this.handleSignOut()} className="navbar-brand" href="#">
-            Sign out!
-          </a>
+        <div className="nav-user-info">
+          <div>
+            <strong>
+              Hello, {user.displayName}
+            </strong>
+          </div>
+  
+          <div class="pull-left">
+            <a onClick={() => this.handleSignOut()} className="" href="#">
+              Sign out!
+            </a>
+          </div>
         </div>
 
-        <span  class="pull-right padding-10">
+        <span class="pull-right padding-10">
           <img alt="..." class="img-circle" style={imageStyle} src={user.photoURL} />
         </span>
 

@@ -7,7 +7,6 @@ export class Auth extends Component {
 
     constructor(props) {
         super(props)
-
     }
 
     uiConfig = {
@@ -30,8 +29,12 @@ export class Auth extends Component {
         })
     }
 
-
     render() {
+        const loginStyle ={
+            margin: "0 autho",
+            backGroundColor: 'green'
+        }
+
         return (
             <div>
                 {
@@ -39,7 +42,8 @@ export class Auth extends Component {
                     <div>Signed in!</div>
                     :
                     // if not signed in then show the sign in provider logos
-                    <div>
+                    <div style={loginStyle}>
+
                         <StyledFirebaseAuth
                             uiConfig={this.uiConfig}
                             firebaseAuth={configedFirebase.auth()}
