@@ -33,20 +33,20 @@ class TodoCounter extends Component {
         return (
             <div>
 
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-success">
+                <div className="list-group">
+                    <a href="#" className="list-group-item list-group-item-action list-group-item-success">
                         <button type="button" style={counterStyle} className="btn btn-success" onClick={() => this.refreshTodoList(true)}>
                             <span className="badge badge-light float-left badge-pill">{completedCount}</span>
                             <span style={textStyle}>Completed</span>
                         </button>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">
+                    <a href="#" className="list-group-item list-group-item-action list-group-item-warning">
                         <button style={counterStyle} type="button" className="btn btn-warning" onClick={() => this.refreshTodoList(false)}>
                             <span className="badge badge-light float-left badge-pill">{notCompletedCount}</span>
                             <span style={textStyle}>Not Completed</span>
                         </button>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-info">
+                    <a href="#" className="list-group-item list-group-item-action list-group-item-info">
                         <button style={counterStyle} type="button" className="btn btn-info" onClick={() => this.refreshTodoList(null)}>
                             <span className="badge badge-light float-left badge-pill">{completedCount + notCompletedCount}</span>
                             <span style={textStyle}>All</span>

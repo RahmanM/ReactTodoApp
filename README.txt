@@ -8,9 +8,7 @@ then reference it in the app.js like:
 
 
 
-
-
-
+# To push to github
 echo "# ReactTodoApp" >> README.md
 git init
 git add README.md
@@ -19,3 +17,15 @@ git remote add origin https://github.com/RahmanM/ReactTodoApp.git
 git push -u origin master
 
 Just to kick Azure CI/CD
+
+# To enable routing in Azure
+Add the web.config file to the public folder
+
+# To get the Azure Devops and Azure Web Services working
+- The Web App should be Windows Based not Unix based (otherwise all sort of issues appear)
+- 
+
+# Routing
+https://www.youtube.com/watch?v=Myq2ssDQoDw
+
+# Securing Router
