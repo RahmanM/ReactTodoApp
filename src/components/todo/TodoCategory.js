@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { todoListAction } from '../../actions/TodoActions';
+import { todoListAction, allTodosListAction } from '../../actions/TodoActions';
 import { bindActionCreators } from 'redux'
 import { groupBy } from "../../Helpers/Utils";
 
@@ -9,20 +9,29 @@ export class TodoCategory extends Component {
   refreshTodoList = (categoryKey) => {
     // Filter todos list by current selected category
     this.props.todoListAction({ categoryKey: categoryKey, isCompleted: null });
-  }
+  }  
+
+  // componentDidMount() {
+  //   this.props.allTodosListAction();
+  // }
+  
 
   render() {
     var categories = this.props.categories || [];
-    var { todos } = this.props || [];
+    var { todos } = this.props || [];  
 
     let cats = [];
+
+    // var { allTodos } = this.props || [];
+    // console.log("TodoCategory->allTodos", allTodos)
+    // console.log("TodoCategory->categories", categories)
 
     if (categories && categories.length > 0 && (todos && todos.length >= 0)) {
       const groupedTodos = groupBy(todos, 'todoCategory') || [];
 
       if (categories && categories.length > 0) {
         cats = categories.map((category) =>
-          <div className='list-group-item list-group-item-warning'>
+          <div key={category.key} className='list-group-item list-group-item-warning'>
             <span className="float-right" >
               <span className="badge badge-info badge-pill">{groupedTodos[category.key] ? groupedTodos[category.key].length : 0}</span>
             </span>
@@ -53,7 +62,10 @@ export class TodoCategory extends Component {
 }
 
 const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({ todoListAction: todoListAction }, dispatch);
+  return {
+    todoListAction: bindActionCreators(todoListAction, dispatch),
+    allTodosListAction : bindActionCreators(allTodosListAction, dispatch)
+  }
 }
 
 
@@ -61,7 +73,8 @@ const matchDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     categories: state.fetchCategories,
-    todos: state.fetchToDos
+    todos: state.fetchToDos,
+    allTodos : state.fetchAllToDos
   }
 }
 

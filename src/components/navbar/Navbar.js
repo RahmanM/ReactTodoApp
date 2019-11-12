@@ -31,15 +31,15 @@ class Navbar extends Component {
             </strong>
           </div>
   
-          <div class="pull-left">
+          <div className="pull-left">
             <a onClick={() => this.handleSignOut()} className="" href="#">
               Sign out!
             </a>
           </div>
         </div>
 
-        <span class="pull-right padding-10">
-          <img alt="..." class="img-circle" style={imageStyle} src={user.photoURL} />
+        <span className="pull-right padding-10">
+          <img alt="..." className="img-circle" style={imageStyle} src={user.photoURL} />
         </span>
 
       </div>

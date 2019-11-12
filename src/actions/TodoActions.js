@@ -1,4 +1,5 @@
 import { todosRef, categoriesRef } from '../configs/Firebase';
+import AuthHelper from '../AuthHelper'
 
 /*
   Todo list action
@@ -13,7 +14,14 @@ export const todoListAction = (filter=null) => async dispatch => {
       todos.push(item);
     });
 
+    // Filter todos for currently logged in user
+    var user = AuthHelper.getUser();
+    if(user){
+      todos = todos.filter((t) => t.userId === user.email);
+    }
+
     if(filter){
+
       // Filter by category
       if(filter.categoryKey){
         todos = todos.filter((t) => t.todoCategory === filter.categoryKey);
@@ -32,6 +40,36 @@ export const todoListAction = (filter=null) => async dispatch => {
 
     dispatch({
       type: 'TODO_LIST',
+      payload: todos
+    },
+    {
+      type: 'TODO_LIST_ALL_TODOS',
+      payload: todos
+    });
+  });
+};
+
+/*
+  Todo list base todos e.g. all the todos for the user
+*/
+export const allTodosListAction = () => async dispatch => {
+  todosRef.on("value", snapshot => {
+    var todos = [];
+
+    snapshot.forEach((childSnapshot) => {
+      var item = childSnapshot.val();
+      item.key = childSnapshot.key;
+      todos.push(item);
+    });
+
+    // Filter todos for currently logged in user
+    var user = AuthHelper.getUser();
+    if(user){
+      todos = todos.filter((t) => t.userId === user.email);
+    }
+
+    dispatch({
+      type: 'TODO_LIST_ALL_USER_TODOS',
       payload: todos
     });
   });

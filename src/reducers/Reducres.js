@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
-import {fetchToDos, fetchCategories} from './TodoReducers.js';
+import {fetchToDos, fetchCategories, fetchAllToDos} from './TodoReducers.js';
 
 export default combineReducers({
     fetchToDos,
-    fetchCategories
+    fetchCategories,
+    fetchAllToDos
 });

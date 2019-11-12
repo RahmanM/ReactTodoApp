@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { todoCategoriesAction, addTodoAction } from '../../actions/TodoActions';
+import AuthHelper from '../../AuthHelper'
 
 class TodoCreate extends Component {
 
@@ -31,7 +32,7 @@ class TodoCreate extends Component {
       description: this.state.todoDescription, 
       todoCategory: this.state.todoCategory, 
       isCompleted: false, 
-      userId: ''
+      userId: AuthHelper.getUser().email
     };
 
     addTodoAction(newTodo);
