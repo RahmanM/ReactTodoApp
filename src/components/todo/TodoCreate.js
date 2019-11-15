@@ -38,7 +38,7 @@ class TodoCreate extends Component {
     addTodoAction(newTodo);
 
     this.setState({todoDescription: ''});
-    this.setState({todoCategory: '-1'});
+    this.setState({todoCaselectegory: ''});
   }
 
   

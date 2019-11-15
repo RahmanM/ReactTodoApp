@@ -17,6 +17,9 @@ export class Todo extends Component {
 
     const {categories} = this.props;
 
+    // console.log("TodoList->categories: ", categories);
+    // console.log("TodoList-> this.props.todos: ",  this.props.todos);
+
     var todos = this.props.todos.map(todo => (
       <tr key={todo.key}>
         <td>{todo.description}</td>
@@ -46,10 +49,10 @@ export class Todo extends Component {
         <table className='table table-hover'>
           <thead>
             <tr>
-              <th scope='col'>Description</th>
+              <th scope='col'>Todo</th>
               <th scope='col'>Category</th>
-              <th scope='col'>Completed</th>
-              <th scope='col'>Actions</th>
+              <th scope='col'>Done?</th>
+              <th scope='col'></th>
             </tr>
           </thead>
           <tbody>{todos}</tbody>
