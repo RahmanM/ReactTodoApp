@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {deleteTodo, completeTodo} from '../../actions/TodoActions';
+import { deleteTodo, completeTodo } from '../../actions/TodoActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
@@ -15,7 +15,7 @@ export class Todo extends Component {
 
   render() {
 
-    const {categories} = this.props;
+    const { categories } = this.props;
 
     // console.log("TodoList->categories: ", categories);
     // console.log("TodoList-> this.props.todos: ",  this.props.todos);
@@ -23,22 +23,30 @@ export class Todo extends Component {
     var todos = this.props.todos.map(todo => (
       <tr key={todo.key}>
         <td>{todo.description}</td>
-        <td>{categories.find(c=> c.key === todo.todoCategory).description}</td>
+        <td>
+          {
+            (() => {
+              var cat = categories.find(c => c.key === todo.todoCategory)
+              return cat ? cat.description : '';
+            }
+            )()
+          }
+        </td>
         <td>
           {todo.isCompleted ? (
             <i className='far fa-check-circle'></i>
           ) : (
-            <i className='fas fa-times'></i>
-          )}
+              <i className='fas fa-times'></i>
+            )}
         </td>
         <td>
-          <a href="#" onClick={()=> this.deleteTodo(todo.key)}><i className='far fa-trash-alt'></i> </a> |{" "}
-          <a href="#" onClick={()=>this.completeTodo(todo.key, todo.isCompleted)}>
+          <a href="#" onClick={() => this.deleteTodo(todo.key)}><i className='far fa-trash-alt'></i> </a> |{" "}
+          <a href="#" onClick={() => this.completeTodo(todo.key, todo.isCompleted)}>
             {todo.isCompleted ? (
-            <i className='fas fa-toggle-on'></i>
-          ) : (
-            <i className='fas fa-toggle-off'></i>
-          )}
+              <i className='fas fa-toggle-on'></i>
+            ) : (
+                <i className='fas fa-toggle-off'></i>
+              )}
           </a>
         </td>
       </tr>
@@ -52,7 +60,7 @@ export class Todo extends Component {
               <th scope='col'>Todo</th>
               <th scope='col'>Category</th>
               <th scope='col'>Done?</th>
-              <th scope='col'></th>
+              <th scope='col'>Actions</th>
             </tr>
           </thead>
           <tbody>{todos}</tbody>
@@ -66,7 +74,7 @@ export class Todo extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteCurrentTodo: bindActionCreators(deleteTodo, dispatch),
-    completeCurrentTodo : bindActionCreators(completeTodo, dispatch)
+    completeCurrentTodo: bindActionCreators(completeTodo, dispatch)
   }
 }
 
@@ -76,4 +84,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps) (Todo)
+export default connect(mapStateToProps, mapDispatchToProps)(Todo)

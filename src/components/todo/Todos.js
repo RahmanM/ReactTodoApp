@@ -3,24 +3,30 @@ import TodoList from "./TodoList";
 import { todoListAction } from '../../actions/TodoActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Paginator from "../../pagination/Paginator";
 
 class Todos extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      recordsPerPage: 5,
-      currentPage: 1
+      recordPerPage: 3,
+      currentPage: 0
     }
   }
 
   componentDidMount() {
     // Call the todoListAction so todos are loaded in form load
     this.props.todoListAction();
+    this.setState({totalRecords: this.props.todos.length});
   }
 
   showNextPages = () => {
     this.setState({ currentPage: this.state.currentPage + 1 });
+  }
+
+  pageChanged = (currentPage) => {
+    this.setState({currentPage: currentPage});
   }
 
   render() {
@@ -28,14 +34,18 @@ class Todos extends Component {
     // Otherwise this error was showing up -> this.props.data.map is not a function
     const data = Array.from(this.props.todos) || [];
 
-    var skip = this.state.recordsPerPage * this.state.currentPage;
-    var pagged = data.slice(0, skip);
+    var pagged = data.slice(this.state.currentPage * this.state.recordPerPage, (this.state.currentPage + 1) * this.state.recordPerPage);
 
     if (pagged) {
       return (
         <div>
           <TodoList todos={pagged} />
-          <div><a href="#" onClick={() => this.showNextPages()}>More...</a></div>
+          <Paginator 
+                    totalRecords={data.length} 
+                    recordPerPage={this.state.recordPerPage} 
+                    currentPage={this.state.currentPage}
+                    pageChanged={this.pageChanged}
+                    />
         </div>
       );
     }
