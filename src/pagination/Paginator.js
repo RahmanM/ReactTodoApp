@@ -25,19 +25,19 @@ export class Paginator extends Component {
             <div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item" disabled={this.state.disableLeft}>
+                        {/* <li class="page-item" disabled={this.state.disableLeft}>
                             <a class="page-link" href="#"  aria-label="Previous" onClick={()=> this.onPageChange(this.state.currentPage - 1)}>
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         {pages}
                         
-                        <li class="page-item">
+                        {/* <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next" onClick={()=> this.onPageChange(this.state.currentPage + 1)}>
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
             </div>
