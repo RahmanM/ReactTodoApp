@@ -1,3 +1,4 @@
+
 import { todosRef, categoriesRef } from '../configs/Firebase';
 import AuthHelper from '../AuthHelper'
 
@@ -41,8 +42,32 @@ export const todoListAction = (filter=null) => async dispatch => {
     dispatch({
       type: 'TODO_LIST',
       payload: todos
-    },
-    {
+    });
+  });
+};
+
+/*
+  Todo list action
+*/
+export const todoListAllAction = () => async dispatch => {
+  todosRef.on("value", snapshot => {
+    var todos = [];
+
+    snapshot.forEach((childSnapshot) => {
+      var item = childSnapshot.val();
+      item.key = childSnapshot.key;
+      todos.push(item);
+    });
+
+    console.log("todoListAllAction", todos)
+
+    // Filter todos for currently logged in user
+    var user = AuthHelper.getUser();
+    if(user){
+      todos = todos.filter((t) => t.userId === user.email);
+    }
+
+    dispatch({
       type: 'TODO_LIST_ALL_TODOS',
       payload: todos
     });
@@ -116,7 +141,4 @@ export const deleteTodo = (key) => async dispatch =>  {
 export const completeTodo = (key, isCompleted) => async dispatch =>  {
   todosRef.child(key).update({isCompleted: !isCompleted})
 }
-
-
-
 

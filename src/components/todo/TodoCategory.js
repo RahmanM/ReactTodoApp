@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { todoListAction, allTodosListAction } from '../../actions/TodoActions';
+import { todoListAction, todoListAllAction } from '../../actions/TodoActions';
 import { bindActionCreators } from 'redux'
 import { groupBy } from "../../Helpers/Utils";
 
@@ -11,9 +11,9 @@ export class TodoCategory extends Component {
     this.props.todoListAction({ categoryKey: categoryKey, isCompleted: null });
   }  
 
-  // componentDidMount() {
-  //   this.props.allTodosListAction();
-  // }
+  componentDidMount() {
+     this.props.todoListAll();
+  }
   
 
   render() {
@@ -22,12 +22,12 @@ export class TodoCategory extends Component {
 
     let cats = [];
 
-    // var { allTodos } = this.props || [];
-    // console.log("TodoCategory->allTodos", allTodos)
-    // console.log("TodoCategory->categories", categories)
+     var { allTodos } = this.props || [];
+     //console.log("TodoCategory->allTodos", allTodos)
+    //  console.log("TodoCategory->categories", categories)
 
     if (categories && categories.length > 0 && (todos && todos.length >= 0)) {
-      const groupedTodos = groupBy(todos, 'todoCategory') || [];
+      const groupedTodos = groupBy(allTodos, 'todoCategory') || [];
 
       if (categories && categories.length > 0) {
         cats = categories.map((category) =>
@@ -64,7 +64,7 @@ export class TodoCategory extends Component {
 const matchDispatchToProps = (dispatch) => {
   return {
     todoListAction: bindActionCreators(todoListAction, dispatch),
-    allTodosListAction : bindActionCreators(allTodosListAction, dispatch)
+    todoListAll : bindActionCreators(todoListAllAction, dispatch)
   }
 }
 
@@ -79,4 +79,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(TodoCategory);
-

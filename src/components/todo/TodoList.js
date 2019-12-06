@@ -17,8 +17,9 @@ export class Todo extends Component {
 
     const { categories } = this.props;
 
-    // console.log("TodoList->categories: ", categories);
-    // console.log("TodoList-> this.props.todos: ",  this.props.todos);
+    if(Array.isArray(categories)){
+
+
 
     var todos = this.props.todos.map(todo => (
       <tr key={todo.key}>
@@ -51,6 +52,8 @@ export class Todo extends Component {
         </td>
       </tr>
     ));
+
+  }
 
     return (
       <div>

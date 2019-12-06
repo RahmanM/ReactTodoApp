@@ -26,4 +26,3 @@ export const  fetchCategories = (state = {}, action = {}) => {
       return state;
   }
 };
-
